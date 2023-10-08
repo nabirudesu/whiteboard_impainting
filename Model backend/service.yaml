@@ -1,0 +1,11 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: whiteboard-service
+spec:
+  type: NodePort
+  selector:
+    app: whiteboardApp
+  ports:
+    - port: 5000
+      targetPort: 5000

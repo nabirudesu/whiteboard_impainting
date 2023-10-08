@@ -1,0 +1,20 @@
+# Use an official OpenVINO image as the base image
+From openvino/ubuntu20_runtime
+USER root
+
+# Set the working directory
+WORKDIR /app
+
+# Copy the required files to the working directory
+COPY ./requirements.txt /app
+
+# Install the required libraries
+RUN apt-get update
+RUN apt-get install -y python3 python3-pip
+RUN python3.8 -m pip install --upgrade pip
+RUN pip install -r requirements.txt
+
+COPY . /app
+
+# Define the command to run when the container starts
+CMD ["python3", "whiteboard_inpainting_demo.py"]

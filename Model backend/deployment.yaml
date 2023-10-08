@@ -1,0 +1,20 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: whiteboard-deployment
+spec:
+  selector:
+    matchLabels:
+      app: whiteboardApp
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: whiteboardApp
+    spec:
+      containers:
+      - name: whiteboard-inpainting
+        image: whiteboard_inpainting
+        imagePullPolicy: Never
+        ports:
+        - containerPort: 5000
